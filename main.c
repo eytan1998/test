@@ -2,19 +2,29 @@
 #include <stdio.h>
 #include "NumClass.h"
 
-int main(){
-    int start,end;
-    printf("\ngive first :");
-    scanf("%d",&start);
-    printf("give second :");
-    scanf("%d",&end);
-    for (int i = start; i <end ; i++) {
-        int flag = 0;
-        if(isPrime(i)) flag =1;
-        else if(isStrong(i)) flag =1;
-        else if(isPalindrome(i)) flag =1;
-        else if(isArmstrong(i)) flag =1;
-        if(flag==1)printf("%d\n",i);
+int main() {
+    int start, end;
+    scanf("%d%d", &start, &end);
+    printf("The Armstrong numbers are:");
+    for (int i = start; i < end; i++) {
+        if (isArmstrong(i))
+            printf(" %d", i);
+    }
+    printf("\nThe Palindromes are:");
+
+    for (int i = start; i < end; i++) {
+        if (isPalindrome(i))
+            printf(" %d", i);
+    }
+    printf("\nThe Prime numbers are:");
+    for (int i = start; i < end; i++) {
+        if (isPrime(i))
+            printf(" %d", i);
+    }
+    printf("\nThe Strong numbers are:");
+    for (int i = start; i < end; i++) {
+        if (isStrong(i))
+            printf(" %d", i);
     }
     return 1;
 }
