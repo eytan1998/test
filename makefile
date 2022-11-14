@@ -8,19 +8,17 @@ main.o: main.c NumClass.h
 	${CC} ${CFLAG} -c main.c
 
 libclassloops.a : basicClassification.o advancedClassificationLoop.o
-		ar rcs libclassloops.a ${BASIC}.o ${LOOP}.o
+		ar rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 libclassloops.so : basicClassification.o advancedClassificationLoop.o
-		${CC} ${CFLAG} -fpic -c ${BASIC}.c
-		${CC} ${CFLAG} -fpic -c ${LOOP}.c
-		${CC} -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
+
+		${CC} -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o -L.
 
 libclassreq.a : basicClassification.o advancedClassificationRecursion.o
 		ar rcs libclassreq.a basicClassification.o advancedClassificationRecursion.o
 libclassreq.so : basicClassification.o advancedClassificationRecursion.o
-		${CC} ${CFLAG} -fPIC -c ${BASIC}.c
-		${CC}  ${CFLAG} -fPIC -c ${REQ}.c
-		${CC} -shared -o libclassreq.so ${BASIC}.o ${REQ}.o
+
+		${CC} -shared -o libclassreq.so basicClassification.o advancedClassificationRecursion.o -L.
 
 .PHONY: loops
 loops: libclassloops.a
@@ -36,16 +34,16 @@ recursived: libclassreq.so
 
 
 mains: libclassreq.a main.o
-	${CC} ${CFLAG} main.o -L. -lclassreq -o $@
+	${CC} ${CFLAG} -L. main.o -lclassreq -o $@
 
 maindloop: libclassloops.so main.o
-	${CC} ${CFLAG} -L. main.c -lclassloops -o $@
+	${CC} ${CFLAG} -L. main.o -lclassloops -o $@
 
 maindrec: libclassreq.so main.o
-	${CC} ${CFLAG} -L. main.c -lclassreq -o $@
+	${CC} ${CFLAG} -L. main.o -lclassreq -o $@
 
 .PHONY:all
-all: loops loopd recursives recursived mains maindloop maindrec
+all: mains maindloop maindrec
 
 
 .PHONY: clean
