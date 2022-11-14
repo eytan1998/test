@@ -6,6 +6,7 @@ int power(int a, int b) {
     return sum;
 }
 
+
 int isPalindromeReq(int n,int length) {
     if (length == 1)return n;
     return ((n%10 * power(10,length-1)) + isPalindromeReq(n/10,length-1));
