@@ -45,7 +45,6 @@ maindrec: libclassreq.so main.o
 .PHONY:all
 all: mains maindloop maindrec
 
-
 .PHONY: clean
 clean:
 	rm  -f  *.o *.so *.a *.out mains maindrec maindloop
