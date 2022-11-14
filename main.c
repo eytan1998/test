@@ -23,8 +23,10 @@ int main() {
     }
     printf("\nThe Strong numbers are:");
     for (int i = start; i < end; i++) {
-        if (isStrong(i))
+        if (isStrong(i)) {
             printf(" %d", i);
+        }
     }
+    printf("\n");
     return 1;
 }
