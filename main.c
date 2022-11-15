@@ -3,6 +3,7 @@
 #include "NumClass.h"
 
 int main() {
+
     int start;
     int end;
     scanf("%d", &start);
