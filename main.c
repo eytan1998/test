@@ -27,7 +27,7 @@ int main() {
     for (int i = start; i < end; i++) {
         if (isPalindrome(i)) {
             if (flagToPrint) {
-                printf("\nThe Palindromes numbers are:");
+                printf("\nThe Palindromes are:");
                 flagToPrint = 0;
             }
             printf(" %d", i);
